@@ -28,12 +28,13 @@ struct CircleButtonView: View {
     }
 }
 
-#Preview("light") {
-    CircleButtonView(iconName: "info")
-    
+#Preview("light", traits: .sizeThatFitsLayout) {
+        CircleButtonView(iconName: "info")
+            .preferredColorScheme(.light)
+        
 }
 
-#Preview("dark") {
+#Preview("dark", traits: .sizeThatFitsLayout) {
     CircleButtonView(iconName: "plus")
         .preferredColorScheme(.dark)
 }
