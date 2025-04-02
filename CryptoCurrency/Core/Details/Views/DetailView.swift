@@ -35,9 +35,13 @@ struct DetailView: View {
     
     var body: some View {
         ScrollView {
+            
+            VStack {
+                ChartView(coin: vm.coin)
+                    .padding(.vertical)
+            }
+            
             VStack(spacing: 20) {
-                Text("hello")
-                    .frame(height: 150)
                 
                 overviewTitle
                 Divider()
@@ -49,6 +53,11 @@ struct DetailView: View {
             .padding()
         }
         .navigationTitle(vm.coin.name)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                navigationBarTrailingItems
+            }
+        }
         
     }
 }
@@ -61,6 +70,16 @@ struct DetailView: View {
 
 
 extension DetailView {
+    
+    private var navigationBarTrailingItems: some View {
+        HStack {
+            Text(vm.coin.symbol.uppercased())
+                .font(.headline)
+                .foregroundStyle(Color.theme.secondaryText)
+            CoinImageView(coin: vm.coin)
+                .frame(width: 25, height: 25)
+        }
+    }
     
     private var overviewTitle: some View {
         Text("Overview")
